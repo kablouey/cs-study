@@ -11,4 +11,3 @@ It is notable for the level of efficiency programs can achieve due to the memory
 - [[Function Declarations]]
 - [[Main Function]]
 - [[Function Definitions]]
-![[Pasted image 20220506143028.png]]
