@@ -1,0 +1,173 @@
+#Personal vim cheat sheet
+- gf to edit file under cursor
+- :e <cfile> to make file under cursor
+- :tabe <cfile> to make file in new tab
+- Ctrl+O to return to previous file
+- Ctrl+I to jump to newer
+- Ctrl+Shift+T to open new terminal tab
+- Ctrl+PgUp/PgDn to move terminal tabs
+- bn bN bd for next, previous, delete buffers
+- script <outputfile> in terminal to record terminal log to file
+- tmux:
+  - tmux info - display info about all
+  - tmux sessions:
+    - Ctrl+b+" for vertical split, Ctrl+b+% for horizontal split
+    - tmux new -s mysession - makes a new session
+    - tmux kill-session -t mysession - kills session with name
+    - Ctrl+b $ - rename session
+    - Ctrl+b d - detach from session
+    - tmux ls - list all sessions
+    - tmux a - attach to last sesstion
+    - tmux a -t mysession - attach to session named mysession
+    - Ctrl+b w - session and window preview
+    - Ctrl+b ( - move to previous session
+    - Ctrl+b ) - move to next session 
+  - tmux windows:
+    - tmux new -s mysession -n mywindow - new session with window
+    - Ctrl+b c - create window
+    - Ctrl+b , - rename current window
+    - Ctrl+b & - close current window
+    - Ctrl+b (p/n) - previous/next window
+    - Ctrl+b (0-9) - select by window number
+  - tmux panes:
+    - Ctrl+b (up,down,left,right) move between panes)
+      - Hold buttons to resize windows
+    - Ctrl+b spacebar - change pane layouts
+    - Ctrl+b x - close current pane
+    - Ctrl+b q - show pane numbers
+    - Ctrl+b q (0-9) - move to pane numbers
+- :!mkdir my_dir
+- :!pwd check current directory
+- !touch foo.txt
+- :Ex, :Vex, :Sex (...plore)
+  - d for new directory
+  - % for new file
+  - hjkl+<CR> (or enter) for navigating
+- Ctrl+w (hjkl) to move windows, c to close window
+- :sp, :vsp for splitting, optional filenames :vsp index.html
+- !:mkdir -p %:h to make new filder where vim is pointed
+  - % is the current file, %:h is the current directory, so makes mkdir -p <current directory>
+- Testing subdirectory link:
+  - ./newfolder/FirstTest.md
+  - e: ./newfolder/FirstTest.md
+  - Then create the directory as above
+- Insert mode:
+  - i - before cursor
+  - I - start of line
+  - a - after cursor
+  - A - end of line
+  - o - new line below
+  - O - new line above
+- Searching:
+  - /<term> with n to iterate through results
+  - vimgrep /foo/g * to grep (vim <searchterm> <file>
+    - :cnext :cprev for navigagting quickfix
+    - :copen :cclose :cc to open, close, display errori
+    - grep -Hn text filename (H for filename, n for line number, -niro for occurences without displaying))
+    - grep -r C++ --exclude-dir={COSC2299-SPESM,homeprojects,learnings,unifiles} . - recursive search, excluding directories, at current location (.)
+- Substitution:
+  - s/foo/bar/o (options)
+  - /g - search for all instances
+  - /gc - ask for confirmation
+  - %s/ - search whole file
+  - s/\<foo\>/bar/gc - only exact word matched
+- grep:
+  - grep <searchterm> <files>
+  - grep foo *.md > grepped.txt
+  - grep `...` for regex
+- Undo/Redo:
+  - :u (5 then u for 5 steps back)
+  - :redo (5 then Ctrl+r for 5 steps forward)
+- Repeating last command:
+  - . - repeat last change
+  - eg. Insert>Type something> Escape, then j. to do the same to the next line
+- Finding text ii ii oi i oi
+  - f, F, t, T - 
+  - f places on the character, t places on preceding
+  - Capitals go backwards
+  - ; repeats last ft command
+- Macros:
+  - Record: q<letter-to-register><commands>q
+  - Execute macro: @<letter>
+  - Multiple times 5@a
+  - Again: @@
+  - :registers to view what's recorded to registers, reg:, reg: a, reg: abx
+  - Appending - qA ... q
+  - to delete, record over it - qaq
+- Deletion/Cut/Paste
+  - dd - deletes current line
+  - 2dd deletes line and line below
+  - V3kd - visual mode, 3k to move up three lines, d to delete
+  - 3dk to delete current line and 3 above
+  - yy - yank current line (aka copy)
+  - p - paste after cursor
+  - P - paste before cursor
+  - gp/gP moves cursor to after the pasted text
+  - Yanked to register:
+    - highlight a word
+    - "ay to yank highlights to register a
+    - "ap/"aP to paste from register a
+  - In insert mode:
+    - Ctrl+r then " for default register pasting
+    - Ctrl+r then 0 is the latest yank
+  - y$ - to end of line
+  - yiw - current word excluing whitespace
+  - yaw - current word including leading/trailing whitespace
+  - ytx - current position up to and before char x
+  - yfx - current position up to and including char x
+  - yG - current position to end of file
+  - :%y - copy whole file, or ggyG
+  - Copy to system clipboard
+    - gg"+yG
+    - Paste in another file: "+p
+- Write on multiple lines
+  - ctrl+v for visual block mode, 
+  - select line using movement
+  - shift+i for insert
+  - type
+  - escape to update for all
+- Vim line numbers:
+  - Regular numbers :set number
+  - Relative numbers :set relativenumber
+  - Hybrid: set both on
+- Go to specific line:
+  - :40 to go to line 40
+  - 40G or 40gg
+  - :0 for first line, :$ for last line
+- Vap selects current block
+- }V-2ap - go to end of current paragraph and visually select it and the preceding paragraph
+- V2ap - this and next paragraph
+- V9j - select this and 9 lines below 
+
+{ reufhfiu
+hfriuhfurh
+cnbckjdc
+cneoewncownc
+ }
+ 
+- Insert button toggles insert and replace
+- Quit/Close windows:
+  - :x
+  - :wq
+  - ZZ
+
+- Cat command
+  - cat -n filename - show with lines numbered
+  - cat > test1.txt - will prompt you to type into test1.txt
+    - ctrl+d to exit
+  - cat test1.txt - show contents of file
+  - cat test1.txt test2.txt - show contents of two files
+  - cat test1.txt > test3.txt - redirect contents to another file
+    - will overwrite if eg. test2 > test3
+  - cat <file> <file> > <file> - redirect multiple
+  - tac <file> - display in reverse order by lines
+  - cat <file> >> <file> - append to that file
+  - cat >> <file> - append your text to the file
+- SSH:
+  - $ ssh, to check if openssh-client is installed
+  - $ ssh localhost to connect localhost to ssh server, if connection refused, must install ssh server
+  - $ sudo service ssh status - check status
+  - To connect: ssh yourusername@host_ip_address
+  - sudo systemctl disable ssh.service - stop from automatically starting on startup
+  - stop and start to stop/start ssh service
+  - 
